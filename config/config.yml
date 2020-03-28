@@ -1,0 +1,320 @@
+error :
+  01 : "No such route."
+  02 : "Domain has no access."
+  10 : "Authentication Failed"
+  11 : "Authentication Failed. Invalid Email / Password."
+  12 : "Only content type application/json is accepted."
+  13 : "API access not granted"
+  14 : "Email can't be Delivered"
+  15 : "Unprocessable Entity"
+  16 : "Data too big"
+  18 : "Booking not found"
+  19 : "Email not allowed to create corporates"
+  20 : "Corporate not associated with the sales agent"
+  21 : "Resource not found"
+  22 : "Insufficient request params"
+  23 : "Incorrect Transaction params"
+  24 : "Please enter a valid OTP."
+  26 : "No User found"
+  27 : "Incorrect hash params"
+  28 : "Please enter a password that is at least 6 characters long."
+  29 : "Insufficient privilege"
+  30 : "Cash on delivery not available on this pincode"
+  31 : "Shipping to this pincode not available"
+  32 : "Please enter a valid pincode"
+  33 : "Email id not found"
+  34 : "Invalid Collection"
+  35 : "Invalid Category"
+  36 : "Invalid Voucher"
+  37 : "Remove cashback to redeem gift voucher."
+  38 : "Remove discount to redeem gift voucher."
+  39 : "Old password does not match."
+  40 : "Sales app access not granted."
+  41 : "We do not have a user registered with this email id yet."
+  42 : "Link has expired. Contact Customer Care to regenrate."
+  43 : "Email already exist. Please Login instead."
+  44 : "Not able to update images."
+  45 : "Mobile number already exist. Please Login instead."
+  46 : "You have exceeded the maximum number of attempts."
+  47 : "Please enter a valid OTP."
+  48 : "Mobile number not registered."
+  49 : "Incorrect login details. Please try again."
+  50 : "Please enter valid email id."
+  51 : "Not a registered Email/Mobile. Please Sign Up as a new user."
+  52 : "Mobile already exist. Please Login instead."
+
+  VAT/TIN: "27930860069V"
+GSTIN: "27AAECB6555G1ZL"
+
+session_expiry:
+  desktop: 604800
+  mobile_site: 604800
+  android: 7776000
+  ios: 7776000
+  default: 86400
+
+device:
+  desktop: 0
+  mobile_site: 1
+  android: 2
+  ios: 3
+
+image_domain: "https://images.bewakoof.com/"
+
+api_client:
+  fd680a3e3374f85a11dffe3414f7622f:
+    device: "android"
+    app_secret: "a3280b3f-b73f-48ad-aedc-55f93eb98db7"
+  1f9e3f71f7c5e522906364c36cce077d:
+    device: "desktop"
+    app_secret: "3da2b798-5660-4d4a-baed-56e0261debff"
+  4ce550a7420cc43e7be3a2f563a18a8e:
+    device: "mobile_site"
+    app_secret: "8b558dd8-8d9e-49f1-9800-7610a38ccc3d"
+
+order_status:
+  0:
+    status: "failed"
+    is_positive: 0
+    view_status: 1
+    tracking: 0
+    date_name: "orders.updated_at"
+    success_order: 0
+  1:
+    status: "order not placed"
+    is_positive: 0
+    view_status: 0
+    tracking: 0
+    date_name: "orders.updated_at"
+    success_order: 0
+  2:
+    status: "pending"
+    is_positive: 0
+    view_status: 1
+    tracking: 0
+    date_name: "orders.updated_at"
+    success_order: 0
+  3:
+    status: "order placed"
+    is_positive: 1
+    view_status: 1
+    tracking: 0
+    date_name: "orders.created_at"
+    success_order: 1
+  4:
+    status: "under packing"
+    is_positive: 1
+    view_status: 2
+    tracking: 0
+    date_name: "orders.updated_at"
+    success_order: 1
+  5:
+    status: "packed"
+    is_positive: 1
+    view_status: 2
+    tracking: 0
+    date_name: "order_processes.packing_date"
+    success_order: 1
+  6:
+    status: "shipped"
+    is_positive: 1
+    view_status: 3
+    tracking: 1
+    date_name: "order_processes.shipping_date"
+    success_order: 1
+  7:
+    status: "rto received"
+    is_positive: 0
+    view_status: 3
+    tracking: 1
+    date_name: "order_processes.rto_date"
+    success_order: 1
+  8:
+    status: "refunded"
+    is_positive: 0
+    view_status: 1
+    tracking: 1
+    date_name: "orders.updated_at"
+    success_order: 1
+  9:
+    status: "cancelled"
+    is_positive: 0
+    view_status: 1
+    tracking: 0
+    date_name: "orders.updated_at"
+    success_order: 0
+  10:
+    status: "replacement"
+    is_positive: 1
+    view_status: 1
+    tracking: 1
+    date_name: "orders.updated_at"
+    success_order: 0
+  11:
+    status: "on hold"
+    is_positive: 1
+    view_status: 1
+    tracking: 0
+    date_name: "orders.updated_at"
+    success_order: 1
+  12:
+    status: "payment confirmation awaited"
+    is_positive: 0
+    view_status: 1
+    tracking: 0
+    date_name: "orders.updated_at"
+    success_order: 1
+  13:
+    status: "pre order"
+    is_positive: 1
+    view_status: 1
+    tracking: 0
+    date_name: "orders.updated_at"
+    success_order: 1
+  14:
+    status: "payment received"
+    is_positive: 1
+    view_status: 0
+    tracking: 0
+    date_name: "orders.updated_at"
+    success_order: 1
+  15:
+    status: "compensated"
+    is_positive: 1
+    view_status: 0
+    tracking: 0
+    date_name: "orders.updated_at"
+    success_order: 1
+  221:
+    status: "not found"
+    is_positive: 1
+    view_status: 1
+    tracking: 0
+    date_name: "orders.updated_at"
+    success_order: 0
+  241:
+    status: "in transit"
+    is_positive: 1
+    view_status: 4
+    tracking: 1
+    date_name: "orders.updated_at"
+    success_order: 0
+  261:
+    status: "delivered"
+    is_positive: 1
+    view_status: 4
+    tracking: 1
+    date_name: "order_processes.delivered_date"
+    success_order: 1
+  262:
+    status: "rto initiated"
+    is_positive: 0
+    view_status: 3
+    tracking: 1
+    date_name: "order_processes.rto_initiated_date"
+    success_order: 1
+  281:
+    status: "undelivered"
+    is_positive: 0
+    view_status: 4
+    tracking: 1
+    date_name: "orders.updated_at"
+    success_order: 0
+  301:
+    status: "unlocatable"
+    is_positive: 0
+    view_status: 1
+    tracking: 1
+    date_name: "orders.updated_at"
+    success_order: 0
+  310:
+    status: "returned"
+    is_positive: 0
+    view_status: 4
+    tracking: 1
+    date_name: "orders.updated_at"
+    success_order: 1
+  421:
+    status: "retailer order under progress"
+    is_positive: 0
+    tracking: 0
+    date_name: "orders.updated_at"
+    success_order: 0
+
+notify_admin_from_email: "tech2@bewakoof.com"
+
+sms:
+  white_list: []
+  no_otp_verification: [9167277544,9673376284]
+
+
+emails:
+  white_list: []
+  care_team: []
+  development_team: []
+
+# Payu Bank codes
+payu_debit_cards:
+  visa: VISA
+  master_card: MAST
+  sbi_maestro: SMAE
+  other_maestro: MAES
+
+payu_credit_cards:
+  visa_master_card: CC
+  amex: AMEX
+  diners_club: DINR
+
+payu_upi:
+  bankcode: UPI
+  PG: UPI
+
+payu_3rd_party_wallets:
+  # 'YPAY Cash':
+  #   'bankcode': 'YPAY'
+  #   'PG': 'CASH'
+  #   'image': 'img_ypaycash.png'
+  'PAYZAPP':
+    'bankcode': 'PAYZ'
+    'PG': 'CASH'
+    'image': 'img_payzapp.png'
+  'Freecharge wallet':
+    'bankcode': 'FREC'
+    'PG': 'CASH'
+    'image': 'img_freecharge.png'
+  # 'Yes wallet':
+  #   'bankcode': 'YESW'
+  #   'PG': 'CASH'
+  #   'image': 'img_yespay.png'
+  'Ola money':
+    'bankcode': 'OLAM'
+    'PG': 'CASH'
+    'image': 'img_olamoney.png'
+  'Airtel money':
+    'bankcode': 'AMON'
+    'PG': 'CASH'
+    'image': 'airtekl_money-01.png'
+
+# card type
+card_types:
+  visa:
+    pattern: '/^4[0-9]{12}(?:[0-9]{3})?$/'
+    cvv_length: [3]
+  master_card:
+    pattern: '/^5[1-5][0-9]{14}$/'
+    cvv_length: [3]
+  maestro:
+    pattern: '/(^6759[0-9]{2}([0-9]{10})$)|(^6759[0-9]{2}([0-9]{12})$)|(^6759[0-9]{2}([0-9]{13})$)/'
+    cvv_length: [3]
+  diners_club:
+    pattern: '/^3(?:0[0-5]|[68][0-9])[0-9]{11}$/'
+    cvv_length: [3]
+  amex:
+    pattern: '/^3[47][0-9]{13}$/'
+    cvv_length: [3, 4]
+  mastercard:
+    pattern: '/^5[1-5][0-9]{14}$/'
+    cvv_length: [3]
+  discover:
+    pattern: '/^6(?:011\d\d|5\d{4}|4[4-9]\d{3}|22(?:1(?:2[6-9]|[3-9]\d)|[2-8]\d\d|9(?:[01]\d|2[0-5])))\d{10}$/'
+    cvv_length: [3]

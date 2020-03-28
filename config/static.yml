@@ -1,0 +1,46 @@
+terms_conditions:
+    {
+      title: "Terms and condition for return and replacement:",
+      subtitle:
+        [
+          {
+            title: "In case of any issue or defect in any or all of the pieces of the Multipack/Combo products, you are required to return all the products. We do not accept return requests for the pack of Boxers."
+          },
+          {
+            title: "You can return your order within 15 days of delivery."
+          },
+          {
+            title: "All return products must be sent along with all original tags and intact packaging."
+           },
+          {
+            title: "Once the product reaches our warehouse and clears quality check, refund will be initiated to your Bewakoof wallet / bank account as per your choice."
+          },
+          {
+            title: "COD charges and Shipping charges are not applicable for refund."
+          },
+          {
+            title: "We recommend you to use a reliable postal service for shipping the product."
+          },
+          {
+            title: "Reimbursement of courier charges are subject to below conditions:",
+            subtitle:
+              [
+                {
+                  title: "Rs. 100/- for shipment weighing upto 500gms will be added to Bewakoof wallet."
+                },
+                {
+                  title: "For every next 500gm slab, an additional amount of Rs. 100/- will be added to the wallet."
+                },
+                {
+                  title: "Please make sure your courier costs do not exceed above mentioned slabs."
+                },
+                {
+                  title: "Above mentioned slabs are fixed irrespective of courier service availed."
+                }
+              ]
+          },
+          {
+            title: "Please mention your 7 digit order id number on the packing of the box."
+          }
+        ]
+    }
