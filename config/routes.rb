@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:create, :index, :show]
     resources :products, only: [:index, :show]
     resources :addresses, only: [:index, :show]
+    resources :authentication, only: [:create, :update]
     namespace :admin do
       resources :articles
       resources :users, except: [:new, :edit]
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
       resources :products
       resources :addresses
       resources :admin_users
+      resources :authentication, only: [:create, :update]
     end
   end
 end

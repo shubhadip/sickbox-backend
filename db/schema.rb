@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_28_085345) do
+ActiveRecord::Schema.define(version: 2020_03_29_133319) do
 
   create_table "addresses", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", default: 0, null: false, unsigned: true
@@ -65,6 +65,45 @@ ActiveRecord::Schema.define(version: 2020_03_28_085345) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "carts", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", default: 0, null: false, unsigned: true
+    t.integer "product_id", default: 0, unsigned: true
+    t.integer "quantity", default: 0, unsigned: true
+    t.integer "device_type", default: 0, unsigned: true
+    t.index ["device_type"], name: "index_carts_on_device_type"
+    t.index ["product_id"], name: "index_carts_on_product_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
+  create_table "devices", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "device_id", limit: 20, null: false
+    t.bigint "user_id", unsigned: true
+    t.datetime "sign_in_at"
+    t.string "registration_id", limit: 500
+    t.string "operators", limit: 500
+    t.string "model", limit: 50
+    t.string "manufacturer", limit: 50
+    t.integer "version", default: 0, unsigned: true
+    t.boolean "status"
+    t.integer "device_type", limit: 1
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["device_id"], name: "index_devices_on_device_id"
+    t.index ["device_type"], name: "index_devices_on_device_type"
+    t.index ["status"], name: "index_devices_on_status"
+    t.index ["user_id"], name: "index_devices_on_user_id"
+  end
+
+  create_table "guest_carts", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "token_id", limit: 100
+    t.integer "product_id", default: 0, unsigned: true
+    t.integer "quantity", default: 0, unsigned: true
+    t.integer "device_type", default: 0, unsigned: true
+    t.index ["device_type"], name: "index_guest_carts_on_device_type"
+    t.index ["product_id"], name: "index_guest_carts_on_product_id"
+    t.index ["token_id"], name: "index_guest_carts_on_token_id"
+  end
+
   create_table "order_products", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "order_id", default: 0, null: false, unsigned: true
     t.integer "product_id", default: 0, unsigned: true
@@ -114,19 +153,42 @@ ActiveRecord::Schema.define(version: 2020_03_28_085345) do
     t.string "meta_title"
     t.text "meta_description"
     t.text "meta_keywords"
-    t.integer "designer_id", unsigned: true
     t.float "price"
     t.float "mrp"
     t.float "weight"
     t.integer "rank", limit: 2
     t.integer "status", limit: 1, default: 0, comment: "0=>disabled,1=>enabled,2=>Discontinued, 3=>Comming soon"
-    t.integer "base_inventory", limit: 1, default: 0, null: false, comment: "0=>unlimited,1=>color,2=>inventory"
-    t.integer "color_id", default: 0, unsigned: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["color_id"], name: "index_products_on_color_id"
     t.index ["status"], name: "index_products_on_status"
     t.index ["url"], name: "index_products_on_url", unique: true
+  end
+
+  create_table "users", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "first_name", limit: 100
+    t.string "last_name", limit: 100
+    t.integer "gender", limit: 1
+    t.integer "status", limit: 1
+    t.integer "device_type", limit: 1, default: 0
+    t.date "date_of_birth"
+    t.decimal "wallet_amount", precision: 12, scale: 3, default: "0.0"
+    t.string "facebook_id"
+    t.string "google_id"
+    t.string "email", limit: 100, default: "", null: false
+    t.string "encrypted_password", limit: 70, default: "", null: false
+    t.integer "sign_in_count", limit: 1, default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip", limit: 20
+    t.string "last_sign_in_ip", limit: 20
+    t.string "mobile", limit: 15
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "is_verified", limit: 1, default: 0
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["first_name"], name: "index_users_on_first_name", type: :fulltext
+    t.index ["last_name"], name: "index_users_on_last_name", type: :fulltext
+    t.index ["status"], name: "index_users_on_status"
   end
 
 end
