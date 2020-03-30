@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_30_042043) do
+ActiveRecord::Schema.define(version: 2020_03_30_114813) do
 
   create_table "addresses", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", default: 0, null: false, unsigned: true
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2020_03_30_042043) do
     t.string "country"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "sub_type", limit: 1, default: 0
+    t.string "alternate_mobile", limit: 15
     t.index ["first_name"], name: "index_addresses_on_first_name", type: :fulltext
     t.index ["last_name"], name: "index_addresses_on_last_name", type: :fulltext
   end

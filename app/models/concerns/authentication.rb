@@ -12,7 +12,7 @@ module Authentication
         is_inactive = (!user.condition_can_login) if self.name.underscore == 'admin_user'
         is_inactive
       end
-      
+
       def generate_access_token
         token = SecureRandom.uuid.tr('-','')
       end

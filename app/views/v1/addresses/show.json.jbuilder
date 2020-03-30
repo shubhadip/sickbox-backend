@@ -1,0 +1,1 @@
+json.extract! @address, :id, :user_id, :first_name, :last_name, :pincode, :landmark, :address, :mobile, :status, :created_at, :updated_at, :city, :state, :country,:sub_type, :alternate_mobile, :full_name

@@ -1,27 +1,20 @@
-class V1::AddressesController < ApplicationController #ApiController
-    # before_action :authenticate_user
+class V1::AddressesController < ApiController
+    before_action :authenticate_user
     before_action :set_address, only: [:show, :update, :destroy] #:pg_options
     before_action :set_fields, only: [:show, :index]
-    before_action :check_pincode, only: [:show, ] #:pg_options
+    # before_action :check_pincode, only: [:show, ] #:pg_options
     before_action :check_address_validation, only: [:update, :create]
 
     # GET /v1/addresses
     # GET /v1/addresses.json
     def index
-      @addresses = Address.active.where(user_id: current_user.id).order('status desc, orders_count desc')
+      @addresses = Address.active.where(user_id: current_user.id).order('status desc')
     end
 
     # GET /v1/addresses/1
     # GET /v1/addresses/1.json
     def show
        @current_user = current_user
-      if params[:fields].present? and params[:fields].include? "payment_options"
-        @error = @address.validate_mobile || @address.validate_name
-        if @error
-            render json: @error, status: :unprocessable_entity
-        end
-      end
-
     end
 
    # POST /v1/addresses
@@ -59,12 +52,14 @@ class V1::AddressesController < ApplicationController #ApiController
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_address
+
         @address = Address.where(user: current_user).find(params[:id])
       end
   
-      def check_pincode
-        render_api_error(31,422) if @address.pincode_service.blank? or @address.pincode_service.inactive? or @address.pincode_service.payment_statuses.blank?
-      end
+      # def check_pincode
+      #   render_api_error(31,422) if @address.pincode_service.blank? or @address.pincode_service.inactive? or @address.pincode_service.payment_statuses.blank?
+      # end
+      
       # Never trust parameters from the scary internet, only allow the white list through.
       def address_params
         address_hash = params.require(:address).permit(:first_name, :last_name,:pincode, :landmark, :address, :mobile, :status, :city, :state, :country, :sub_type, :alternate_mobile)
