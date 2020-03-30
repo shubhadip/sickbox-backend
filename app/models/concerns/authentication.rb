@@ -142,7 +142,6 @@ module Authentication
     def verify_otp(params)
       key = "#{class_name_underscore}:#{params["mobile"]}"
       trials = $redis.hget(key, "tries").to_i
-      byebug
       if trials > 2
         self.errors.add(:OTP, APP_CONFIG["error"][46])
         return false

@@ -66,7 +66,7 @@ class V1::Admin::ProductsController < V1::AdminController
 
       def set_fields
         all_fields = params["fields"].present? ? params["fields"].split(',').collect(&:strip) : []
-        @fields = ((all_fields) & Product.attribute_names) | [:id, :name, :status]
+        @fields = ((all_fields) & Product.attribute_names) | [:id, :name, :status, :mrp, :price]
         @additional_fields = (all_fields & Product.reflect_on_all_associations.map {|object| object.name.to_s})
       end
   end

@@ -70,25 +70,20 @@ class User < ApplicationRecord
       end
   
       def self.external(params, version=0)
-        byebug
         response = {}
         access_type = ""
         channel = (params["mobile"].present? && 'mobile') || 'email'
-        byebug
         if params[:facebook_id].present?
           response = ExternalApi::Authentication::Facebook.new(params[:facebook_id]).get_response
           channel = 'facebook'
         end
-        byebug
         if params[:google_id].present?
           response = ExternalApi::Authentication::Google.new(params[:google_id]).get_response
           channel = 'gmail'
         end
-        byebug
         email = response["email"] || params["email"]
         status = response["email"].present? ? true : false
         mobile = params["mobile"]
-        byebug
         if !email.present? and params[:facebook_id].present?
           user = User.find_by(facebook_id: response["facebook_id"])
           if user.present?
@@ -102,26 +97,21 @@ class User < ApplicationRecord
           user = User.find_by(facebook_id: response["facebook_id"])
           status = true
         end
-        byebug
         user = User.get_user(email, mobile) unless params[:facebook_id].present? && params[:email].present?
         response.delete("gender") if response.present? && response["gender"].present? && User.genders.keys.exclude?(response["gender"].downcase)
-        byebug
         if user.present?
           if (!response.present?)
             user.errors.add(:email, APP_CONFIG["error"][43]) if user.email === email
             user.errors.add(:mobile, APP_CONFIG["error"][52]) if user.mobile === mobile
             return {"user": user, "access_type": access_type}
           end
-          byebug
           response.delete("gender") if !user.gender.nil?
           user.update(response)
           access_type = "login"
         else
-            byebug
           params.merge!(response)
           user = User.create(params)
           access_type = "signup"
-          byebug
         #   begin
         #     byebug
         #     
@@ -132,7 +122,6 @@ class User < ApplicationRecord
         #     end
         #   end
         end
-        byebug
         user.authenticate(params.merge!({status: status, device:params[:device_type]}))
         final_hash = {"user": user, "access_type": access_type, 'channel': channel }
       end

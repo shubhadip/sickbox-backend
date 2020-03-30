@@ -1,4 +1,4 @@
-class V1::ArticlesController < ApplicationController
+class V1::ItemsController < ApiController
 
     def index
     end
@@ -8,5 +8,7 @@ class V1::ArticlesController < ApplicationController
 
     def create
     end
+
+    private
 
 end

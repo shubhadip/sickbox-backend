@@ -26,7 +26,7 @@ class V1::ProductsController < ApiController
       end
 
       def product_filter_params
-        filter_params = params.require(:product).permit(:id)
+        filter_params = params.require(:product).permit(:id, :status, :price, :mrp)
         filter_params.map{ |key, value| filter_params[key] = nil if value.to_s.downcase == "null"}
         filter_params
       end

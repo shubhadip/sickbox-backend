@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_29_133319) do
+ActiveRecord::Schema.define(version: 2020_03_30_042043) do
 
   create_table "addresses", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", default: 0, null: false, unsigned: true
@@ -56,15 +56,6 @@ ActiveRecord::Schema.define(version: 2020_03_29_133319) do
     t.index ["email"], name: "index_admin_users_on_email", unique: true
   end
 
-  create_table "articles", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "title", limit: 150, null: false
-    t.string "description"
-    t.string "imageUrl"
-    t.string "buttonText", limit: 50
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "carts", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", default: 0, null: false, unsigned: true
     t.integer "product_id", default: 0, unsigned: true
@@ -102,6 +93,16 @@ ActiveRecord::Schema.define(version: 2020_03_29_133319) do
     t.index ["device_type"], name: "index_guest_carts_on_device_type"
     t.index ["product_id"], name: "index_guest_carts_on_product_id"
     t.index ["token_id"], name: "index_guest_carts_on_token_id"
+  end
+
+  create_table "items", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title", limit: 150, null: false
+    t.string "description"
+    t.string "imageUrl"
+    t.string "buttonText", limit: 50
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "product_id", default: 0, unsigned: true
   end
 
   create_table "order_products", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
