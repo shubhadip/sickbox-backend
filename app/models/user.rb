@@ -56,11 +56,9 @@ class User < ApplicationRecord
   end
 
   def mobile_10digit
-    begin
-      "#{self.mobile.last(10)}"
-    rescue StandardError
-      ''
-    end
+    "#{self.mobile.last(10)}"
+  rescue StandardError
+    ''
   end
 
   def set_status

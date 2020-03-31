@@ -50,10 +50,7 @@ class V1::SubscribersController < ApiController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def subscriber_params
-    params.require(:subscriber).permit(
-      :email,
-      :device_type
-    )
+    params.require(:subscriber).permit(:email, :device_type)
   end
 
   def set_includes
@@ -72,9 +69,9 @@ class V1::SubscribersController < ApiController
     @additional_fields =
       (
         all_fields &
-        Subscriber.reflect_on_all_associations.map do |object|
+          Subscriber.reflect_on_all_associations.map do |object|
             object.name.to_s
-        end
+          end
       )
   end
 end

@@ -182,10 +182,10 @@ class ApiController < ApplicationController
         params.to_s
       } \n Backtrace:\n#{e.backtrace.join("\n")}"
     )
-    NewRelic::Agent.notice_error(
-      e,
-      { custom_params: set_custom_params_to_track }
-    )
+    # NewRelic::Agent.notice_error(
+    #   e,
+    #   { custom_params: set_custom_params_to_track }
+    # )
     render_api_error(0o2, 500, 'server', "API internal error: #{e.to_s}")
   end
 
