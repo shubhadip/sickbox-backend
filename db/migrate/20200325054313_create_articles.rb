@@ -1,6 +1,6 @@
 class CreateArticles < ActiveRecord::Migration[6.0]
   def change
-    create_table :articles , :id=>false do |t|
+    create_table :articles, id: false do |t|
       t.column :id, BIGINT_PRIMARY_ID
       t.string :title, null: false, limit: 150
       t.string :description

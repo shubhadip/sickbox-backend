@@ -1,4 +1,3 @@
 module CartModule
-    extend ActiveSupport::Concern
-
+  extend ActiveSupport::Concern
 end

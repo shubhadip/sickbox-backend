@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_30_114813) do
+ActiveRecord::Schema.define(version: 2020_03_31_035850) do
 
   create_table "addresses", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", default: 0, null: false, unsigned: true
@@ -165,6 +165,15 @@ ActiveRecord::Schema.define(version: 2020_03_30_114813) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["status"], name: "index_products_on_status"
     t.index ["url"], name: "index_products_on_url", unique: true
+  end
+
+  create_table "subscribers", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "email", limit: 100, default: "", null: false
+    t.integer "device_type", default: 0, unsigned: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["device_type"], name: "index_subscribers_on_device_type"
+    t.index ["email"], name: "index_subscribers_on_email", unique: true
   end
 
   create_table "users", id: :bigint, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|

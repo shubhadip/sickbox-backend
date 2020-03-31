@@ -1,2 +1,1 @@
-class Order < ApplicationRecord
-end
+class Order < ApplicationRecord; end
