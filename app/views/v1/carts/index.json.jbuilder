@@ -1,7 +1,7 @@
 json.carts do |json|
     json.products do |json| 
       json.array!(@product_details) do |product|
-        json.extract! product, :product_id, :name, :status, :meta_title, :meta_description, :price, :mrp, :weight
+        json.extract! product, :product_id, :name, :status, :meta_title, :meta_description, :price, :mrp, :weight, :selected_qty
       end
     end
     json.total_quantity @total_quantity

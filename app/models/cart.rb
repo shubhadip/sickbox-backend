@@ -6,7 +6,10 @@ class Cart < ApplicationRecord
     def get_cart_details(cart)
       cartMap = {}
       product_details = []
-      product_ids = cart.each(&:product_id)
+      product_ids= []
+      cart.each do |item|
+        product_ids.push(item[:product_id])
+      end
       total_quantity = 0
       cart.each do |cart_product|
         cartMap[cart_product.product_id] = cart_product.quantity
