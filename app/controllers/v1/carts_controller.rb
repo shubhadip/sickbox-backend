@@ -10,14 +10,14 @@ class V1::CartsController < ApiController
     end
 
     def create
-        @cart = @cart_object.new(cart_params)
+        @cart = @cart_object.create_or_find_by(cart_params)
         if @cart.save
             render json: @cart, status: :created
         else
             render_api_error(0, 422, 'error', {"email":"Invalid cart details"})
         end
     end
-  
+
     def update
         @cart  = @cart_object.update(cart_params)
         if @cart
@@ -50,7 +50,7 @@ class V1::CartsController < ApiController
 
       def set_cart_details
         @carts = @cart_object.where(@id => @value)
-        @product_details = Cart.get_cart_details(@carts)
+        @product_details, @total_quantity = Cart.get_cart_details(@carts)
       end
 
       def set_objects

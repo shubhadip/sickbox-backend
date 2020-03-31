@@ -6,9 +6,11 @@ class Cart < ApplicationRecord
         def get_cart_details(cart)
             cartMap = {}
             product_details = []
-            product_ids = cart.map{ |cart_product| cart_product.product_id}
+            product_ids = cart.each{ |cart_product| cart_product.product_id}
+            total_quantity = 0
             cart.each do | cart_product |
                 cartMap[cart_product.product_id] = cart_product.quantity
+                total_quantity += cart_product.quantity
             end
             products = Product.where("id in (?)", product_ids)
             products.each do |p|
@@ -25,7 +27,7 @@ class Cart < ApplicationRecord
                 temp[:selected_qty] = cartMap[p['id']]
                 product_details.push(temp)
             end
-            product_details
+            return product_details, total_quantity
         end
     end
 

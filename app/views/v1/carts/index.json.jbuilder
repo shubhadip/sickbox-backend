@@ -4,4 +4,5 @@ json.carts do |json|
         json.extract! product, :product_id, :name, :status, :meta_title, :meta_description, :price, :mrp, :weight
       end
     end
+    json.total_quantity @total_quantity
 end
