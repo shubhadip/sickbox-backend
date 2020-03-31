@@ -10,13 +10,18 @@ class Cart < ApplicationRecord
       cart.each do |item|
         product_ids.push(item[:product_id])
       end
+      byebug
       total_quantity = 0
       cart.each do |cart_product|
         cartMap[cart_product.product_id] = cart_product.quantity
+        key = "p#{cart_product['product_id']}"
+        cartMap[key] = cart_product.id
         total_quantity += cart_product.quantity
       end
+      byebug
       products = Product.where('id in (?)', product_ids)
       products.each do |p|
+        key = "p#{p['id']}"
         temp = {}
         temp[:name] = p['name']
         temp[:meta_title] = p['meta_title']
@@ -28,6 +33,7 @@ class Cart < ApplicationRecord
         temp[:weight] = p['weight']
         temp[:product_id] = p['id']
         temp[:selected_qty] = cartMap[p['id']]
+        temp[:cart_id] = cartMap[key]
         product_details.push(temp)
       end
       return product_details, total_quantity
