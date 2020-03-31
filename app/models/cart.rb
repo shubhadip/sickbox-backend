@@ -1,6 +1,8 @@
 class Cart < ApplicationRecord
-  validates :user_id, :product_id, :quantity, presence: true
   has_many :products
+
+  validates :user_id, :product_id, :quantity, presence: true
+  validate :check_cart_product, on: :create
 
   class << self
     def get_cart_details(cart)
@@ -10,7 +12,6 @@ class Cart < ApplicationRecord
       cart.each do |item|
         product_ids.push(item[:product_id])
       end
-      byebug
       total_quantity = 0
       cart.each do |cart_product|
         cartMap[cart_product.product_id] = cart_product.quantity
@@ -18,7 +19,6 @@ class Cart < ApplicationRecord
         cartMap[key] = cart_product.id
         total_quantity += cart_product.quantity
       end
-      byebug
       products = Product.where('id in (?)', product_ids)
       products.each do |p|
         key = "p#{p['id']}"
@@ -39,4 +39,14 @@ class Cart < ApplicationRecord
       return product_details, total_quantity
     end
   end
+
+  private 
+
+    def check_cart_product
+      data = Cart.where('user_id in (?) and product_id in (?)', self.user_id, self.product_id)
+      if data.length
+          errors.add(:product_id, 'Product Already In Cart')
+      end
+    end
+
 end

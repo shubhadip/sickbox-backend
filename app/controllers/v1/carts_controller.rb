@@ -8,11 +8,12 @@ class V1::CartsController < ApiController
   def show; end
 
   def create
-    @cart = @cart_object.create_or_find_by(cart_params)
+    @cart = @cart_object.create(cart_params)
     if @cart.save
       render json: @cart, status: :created
     else
-      render_api_error(0, 422, 'error', { "email": 'Invalid cart details' })
+      byebug
+      render json: @cart.errors, status: :unprocessable_entity
     end
   end
 
