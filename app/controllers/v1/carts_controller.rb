@@ -12,7 +12,6 @@ class V1::CartsController < ApiController
     if @cart.save
       render json: @cart, status: :created
     else
-      byebug
       render json: @cart.errors, status: :unprocessable_entity
     end
   end
