@@ -44,7 +44,7 @@ class Cart < ApplicationRecord
 
     def check_cart_product
       data = Cart.where('user_id in (?) and product_id in (?)', self.user_id, self.product_id)
-      if data.length
+      if data.present?
           errors.add(:product_id, 'Product Already In Cart')
       end
     end
