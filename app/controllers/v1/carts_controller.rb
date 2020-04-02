@@ -27,7 +27,7 @@ class V1::CartsController < ApiController
     if @cart.present?
       @cart.action = params[:action]
       @cart.current_user = current_user
-      @cart.value = @value
+      # @cart.value = @value
       @cart.destroy
     end
   end

@@ -1,7 +1,9 @@
 class GuestCart < ApplicationRecord
   validates :token_id, :product_id, :quantity, presence: true
   validate :check_cart_product, on: :create
-  
+
+  attr_accessor :current_user, :action
+
   private 
 
   def check_cart_product

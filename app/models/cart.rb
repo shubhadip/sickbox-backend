@@ -1,8 +1,10 @@
 class Cart < ApplicationRecord
-  has_many :products
 
+  has_many :products
   validates :user_id, :product_id, :quantity, presence: true
   validate :check_cart_product, on: :create
+
+  attr_accessor :current_user, :action
 
   class << self
     def get_cart_details(cart)
