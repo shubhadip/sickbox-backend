@@ -1,8 +1,7 @@
 class V1::CartsController < ApiController
   before_action :set_objects
-  before_action :set_cart, only: %i[show update destroy]
   before_action :set_cart_details, only: %i[index]
-
+  before_action :update_cart, only: %i[update destroy show]
   def index; end
 
   def show; end
@@ -17,11 +16,10 @@ class V1::CartsController < ApiController
   end
 
   def update
-    @cart = @cart_object.update(cart_params)
-    if @cart
+    if @cart.update(cart_params)
       render json: @cart, status: :created
     else
-      render_api_error(0, 422, 'error', { "email": 'Invalid cart details' })
+      render json: @cart.errors, status: :unprocessable_entity
     end
   end
 
@@ -65,9 +63,8 @@ class V1::CartsController < ApiController
     end
   end
 
-  def set_cart
-    @cart =
-      @cart_object.where(@id => @value, product_id: params[:id]).limit(1).first
+  def update_cart
+    @cart = @cart_object.find_by(id: params[:id])
   end
 
   def cart_params
