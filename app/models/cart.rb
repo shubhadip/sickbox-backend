@@ -40,6 +40,16 @@ class Cart < ApplicationRecord
       end
       return product_details, total_quantity
     end
+
+    def get_guest_cart(user, token)
+      current_cart ={}
+      self.where(user_id: user.id).map { |cart| current_cart[cart.product_id] = cart }
+      GuestCart.where(token_id: token).each do |cart|
+        current_cart[cart.product_id].try(:destroy)
+        self.create({id: cart.id, product_id: cart.product_id, quantity: cart.quantity, device_type: cart.device_type}.merge(user_id: user.id))
+        cart.destroy
+      end
+    end
   end
 
   private 

@@ -27,11 +27,7 @@ class V1::UsersController < ApiController
       render_api_error(22, 400, 'error', @user)
       return
     end
-
-    # clevertap_data = generate_clevertap_object('login', @user, data: { channel: external_api[:channel], access_type:  external_api[:access_type]})
-
-    # transfer_cart()
-
+    transfer_cart()
     if @user.errors.blank?
       render json: @user.user_show, status: :created
 

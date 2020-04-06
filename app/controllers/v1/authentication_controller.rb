@@ -7,7 +7,7 @@ class V1::AuthenticationController < ApiController
   include AuthenticationModule
 
   def transfer_cart
-    # Cart.get_guest_cart(@user, token) if @user.present?
+    Cart.get_guest_cart(@user, token) if @user.present?
   end
 
   def update_user_device
