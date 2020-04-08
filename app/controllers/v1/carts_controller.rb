@@ -46,7 +46,8 @@ class V1::CartsController < ApiController
 
   def set_cart_details
     @carts = @cart_object.where(@id => @value)
-    @product_details, @total_quantity = Cart.get_cart_details(@carts)
+    @discount = 50
+    @product_details, @total_quantity, @total_price = Cart.get_cart_details(@carts)
   end
 
   def set_objects

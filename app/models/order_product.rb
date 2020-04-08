@@ -11,5 +11,6 @@ class OrderProduct < ApplicationRecord
             self.price = Product.find(self.product_id).price
         end
     end
+
 end
   

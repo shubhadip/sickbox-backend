@@ -5,4 +5,6 @@ json.carts do |json|
       end
     end
     json.total_quantity @total_quantity
+    json.total_price @total_price
+    json.discount @discount 
 end

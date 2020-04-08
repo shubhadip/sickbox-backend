@@ -24,4 +24,6 @@ class Order < ApplicationRecord;
     #validations
     validates_presence_of :order_products, on: :create
 
+    private
+
 end

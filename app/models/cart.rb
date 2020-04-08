@@ -21,6 +21,7 @@ class Cart < ApplicationRecord
         cartMap[key] = cart_product.id
         total_quantity += cart_product.quantity
       end
+      total_price = 0
       products = Product.where('id in (?)', product_ids)
       products.each do |p|
         key = "p#{p['id']}"
@@ -36,9 +37,10 @@ class Cart < ApplicationRecord
         temp[:product_id] = p['id']
         temp[:selected_qty] = cartMap[p['id']]
         temp[:cart_id] = cartMap[key]
+        total_price += p.price * cartMap[p['id']]
         product_details.push(temp)
       end
-      return product_details, total_quantity
+      return product_details, total_quantity, total_price
     end
 
     def get_guest_cart(user, token)
