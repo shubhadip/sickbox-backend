@@ -5,7 +5,7 @@ before_action :set_order, only: [:show, :update, :destroy]
   def index
     @orders = Order.includes(set_includes)
     order_filter if params[:order].present?
-    #@total_result = @orders.count
+    @total_result = @orders.count
     @orders = @orders.order(order_by).limit(limit).offset(offset)
     if @additional_fields.include? "order_products"
        @product_quantity = {}
@@ -134,7 +134,9 @@ before_action :set_order, only: [:show, :update, :destroy]
       filter_params = params.require(:order).permit(:id,:name, :title, :parent_id, :enable, :model, :user_id, :device_type, :payment_gateway, :is_confirm, :sub_status, :retailer , id: [] ,device_type: [], payment_gateway: [], status: [])
       filter_params[:id] = filter_params[:id].uniq - [0]  if filter_params[:id].present? && filter_params[:id].kind_of?(Array)
       filter_params.delete_if {|key, value| value.blank?}
-      filter_params.map{ |key, value| filter_params[key] = nil if value.to_s.downcase == "null"}
+      attributes = filter_params.to_h || {}
+      attributes = attributes.values
+      attributes.map{ |key, value| filter_params[key] = nil if value.to_s.downcase == "null"}
       filter_params[:device_type] = filter_params[:device_type].inject([]){ |device_types, key| device_types << Order.device_types[key]} if filter_params[:device_type].present?
       filter_params[:payment_gateway] = filter_params[:payment_gateway].inject([]){ |payment_gateways, key| payment_gateways << Order.payment_gateways[key]} if filter_params[:payment_gateway].present?
       filter_params[:status] = filter_params[:status].inject([]){ |statuses, key| statuses << Order.statuses[key]} if  filter_params[:status].kind_of?(Array) if filter_params[:status].present?

@@ -8,8 +8,9 @@ class V1::Admin::ProductsController < V1::AdminController
         'id desc'
       )
     if params[:product].present?
-      @products = @products.where(product_filter_params)
+      @products = @products.where(products_filter_params)
     end
+    render json: @products, status: :ok
   end
 
   def show; end
@@ -84,9 +85,11 @@ class V1::Admin::ProductsController < V1::AdminController
   def products_filter_params
     filter_params =
       params.require(:product).permit(:id, :name, :url, :rank, :status)
-    filter_params.map do |key, value|
-      filter_params[key] = nil if value.to_s.downcase == 'null'
-    end
+      attributes = filter_params.to_h || {}
+      attributes = attributes.values
+      attributes.map do |key, value|
+        filter_params[key] = nil if value.to_s.downcase == 'null'
+      end
     filter_params
   end
 
