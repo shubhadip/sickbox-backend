@@ -9,6 +9,7 @@ class Order < ApplicationRecord;
     #enums
     enum device_type: APP_CONFIG["device"]
     enum status: APP_CONFIG["order_status"].inject({}) {|hash, (k,v)| hash.merge(v['status'] =>k)}
+    enum payment_gateway: APP_CONFIG["payment_gateway"].inject({}) {|hash, (k,v)| hash.merge(v['name'] =>k)}
     enum packing_type: [:"not printed", :inventory, :printing, :processed]
 
     #scope
@@ -24,6 +25,15 @@ class Order < ApplicationRecord;
     #validations
     validates_presence_of :order_products, on: :create
 
+    def is_prepaid?
+        if self.payment_gateway.present?
+          APP_CONFIG["payment_gateway"][Order.payment_gateways[self.payment_gateway]]["is_prepaid"] == 1  ? true : false
+        end
+    end
+
     private
 
+    def is_prepaid
+        APP_CONFIG["payment_gateway"].map {|k,v| v["is_prepaid"] if v['name'] == self.payment_gateway}.compact[0]
+    end
 end

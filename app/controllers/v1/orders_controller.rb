@@ -8,7 +8,6 @@ class V1::OrdersController < ApiController
     # GET /v1/orders.json
     def index
       @orders = Order.placed.includes(set_includes).limit(limit).offset(offset).all.order("orders.id desc")
-      byebug
       order_filter
       @total_result = @orders.count
     end
@@ -23,9 +22,7 @@ class V1::OrdersController < ApiController
       return render_api_error(22,400,'error', "order in progress") if $redis.get(key).present?
       $redis.set(key, "active")
       $redis.expire(key, 5)
-      byebug
       @order = Order.new(order_params)
-      byebug
       if @order.save
         # $redis.del("wallet_user:#{current_user.id}")
         render json: @order, status: :created
@@ -57,7 +54,6 @@ class V1::OrdersController < ApiController
       # Use callbacks to share common setup or constraints between actions.
 
       def check_cart
-        byebug
         render_api_error(22,400,'error',{"order_products.product": ["Bag is Empty"]}) if (params[:order][:order_products_attributes].blank? || Cart.where(user_id: current_user.id).count == 0)
       end
 
@@ -93,7 +89,6 @@ class V1::OrdersController < ApiController
       end
       # Never trust parameters from the scary internet, only allow the white list through.
       def order_params
-        byebug
         order_hash = params.require(:order).permit(:address_id, :payment_gateway, :user_id, :due_date, :device, :retailer, :packing_note, :remark, :update_by_user, :wallet_applied).merge!({device_type: @device,version: version})
         order_hash.merge! params.permit(:controller, :actions)
           order_hash.merge! params.require(:order).permit(:status) if params["order"]["status"] == "cancelled"

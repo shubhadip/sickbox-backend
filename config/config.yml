@@ -406,3 +406,5 @@ payment_gateway:
     is_prepaid: 1
     is_active: 1
 
+cgst_tax_percentage_ratio: 50
+sgst_tax_percentage_ratio: 50

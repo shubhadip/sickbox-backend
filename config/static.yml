@@ -3689,3 +3689,43 @@ states: [
         "cities": []
     }
 ]
+
+state_code_list : {
+    "andaman and nicobar islands":{"tin_number":35, "state_code":"AN"},
+    "andhra pradesh":{"tin_number":28, "state_code":"AP"},
+    "andhra pradesh (new)":{"tin_number":37, "state_code":"AD"},
+    "arunachal pradesh":{"tin_number":12, "state_code":"AR"},
+    "assam":{"tin_number":18, "state_code":"AS"},
+    "bihar":{"tin_number":10, "state_code":"BH"},
+    "chandigarh":{"tin_number":4, "state_code":"CH"},
+    "chattisgarh":{"tin_number":22, "state_code":"CT"},
+    "dadra and nagar haveli":{"tin_number":26, "state_code":"DN"},
+    "daman and diu":{"tin_number":25, "state_code":"DD"},
+    "delhi":{"tin_number":7, "state_code":"DL"},
+    "goa":{"tin_number":30, "state_code":"GA"},
+    "gujarat":{"tin_number":24, "state_code":"GJ"},
+    "haryana":{"tin_number":6, "state_code":"HR"},
+    "himachal pradesh":{"tin_number":2, "state_code":"HP"},
+    "jammu and kashmir":{"tin_number":1, "state_code":"JK"},
+    "jharkhand":{"tin_number":20, "state_code":"JH"},
+    "karnataka":{"tin_number":29, "state_code":"KA"},
+    "kerala":{"tin_number":32, "state_code":"KL"},
+    "lakshadweep islands":{"tin_number":31, "state_code":"LD"},
+    "madhya pradesh":{"tin_number":23, "state_code":"MP"},
+    "maharashtra":{"tin_number":27, "state_code":"MH"},
+    "manipur":{"tin_number":14, "state_code":"MN"},
+    "meghalaya":{"tin_number":17, "state_code":"ME"},
+    "mizoram":{"tin_number":15, "state_code":"MI"},
+    "nagaland":{"tin_number":13, "state_code":"NL"},
+    "odisha":{"tin_number":21, "state_code":"OR"},
+    "pondicherry":{"tin_number":34, "state_code":"PY"},
+    "punjab":{"tin_number":3, "state_code":"PB"},
+    "rajasthan":{"tin_number":"08", "state_code":"RJ"},
+    "sikkim":{"tin_number":11, "state_code":"SK"},
+    "tamil nadu":{"tin_number":33, "state_code":"TN"},
+    "telangana":{"tin_number":36, "state_code":"TS"},
+    "tripura":{"tin_number":16, "state_code":"TR"},
+    "uttar pradesh":{"tin_number":"09", "state_code":"UP"},
+    "uttarakhand":{"tin_number":5, "state_code":"UT"},
+    "west bengal":{"tin_number":19, "state_code":"WB"}
+  }
