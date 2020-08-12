@@ -78,13 +78,14 @@ class V1::Admin::ProductsController < V1::AdminController
         :mrp,
         :weight,
         :rank,
-        :status
+        :status,
+        :avatar
       )
   end
 
   def products_filter_params
     filter_params =
-      params.require(:product).permit(:id, :name, :url, :rank, :status)
+      params.require(:product).permit(:id, :name, :url, :rank, :status, :avatar)
       attributes = filter_params.to_h || {}
       attributes = attributes.values
       attributes.map do |key, value|

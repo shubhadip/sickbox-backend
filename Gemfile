@@ -6,7 +6,7 @@ ruby '2.6.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use mysql2 as the database for Active Record
-gem 'mysql2', '>= 0.4.4'
+gem 'mysql2', '~> 0.5.3'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -25,6 +25,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -39,7 +40,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry'
   gem 'pry-doc'
-  gem 'byebug'
   gem 'rails_best_practices'
 end
 

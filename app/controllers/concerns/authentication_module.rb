@@ -9,7 +9,6 @@ module AuthenticationModule
     return_data = @user.authenticate(authentication_params) if @user.present?
     login_condition = (@user.present? and return_data.present?)
     # @user.check_login_attempts(login_condition) if @user.present?
-
     if login_condition and @user.try(:errors).blank?
       return_data = return_data if @user.is_a?(User)
       render json: return_data, status: :created

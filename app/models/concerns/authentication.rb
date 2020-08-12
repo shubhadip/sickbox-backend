@@ -63,7 +63,6 @@ module Authentication
     password = authentication_params[:password] || ''
 
     condition = authentication_params[:status] == true
-
     condition ||=
       (
         self.encrypted_password == class_object.encrypt_password(password) ||
@@ -77,7 +76,6 @@ module Authentication
         authentication_params[:otp_code].present? and
           verify_otp(authentication_params)
       )
-
     if condition and condition_can_login
       if (!authentication_params[:status])
         user_update = {

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get 'static/location' => 'static#location'
     namespace :admin do
       resources :articles
+      resources :items
       resources :users, except: %i[new edit]
       resources :orders, except: %i[new edit]
       resources :products
