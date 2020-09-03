@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   attr_accessor :no_validate, :runtime_url_rank
+  has_one_attached :avatar
 
   has_many :orders
   has_many :items
