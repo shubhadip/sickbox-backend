@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  include Rails.application.routes.url_helpers
   attr_accessor :no_validate, :runtime_url_rank
   has_one_attached :avatar
 
@@ -13,4 +14,11 @@ class Product < ApplicationRecord
                         :mrp,
                         :weight,
                         unless: ->(product) { product.no_validate }
+
+
+    def imageUrl
+      if Rails.env.development?
+        return rails_blob_path(self.avatar, only_path: true)
+      end
+    end
 end

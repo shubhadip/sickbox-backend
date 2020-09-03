@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :addresses, only: %i[index show create update]
     resources :authentication, only: %i[create update]
     resources :carts
+    resources :items
     get 'static/location' => 'static#location'
     namespace :admin do
       resources :articles

@@ -10,7 +10,6 @@ class V1::Admin::ItemsController < V1::AdminController
     if params[:item].present?
       @items = @items.where(items_filter_params)
     end
-    render json: @items, status: :ok
   end
 
   def show; end
@@ -35,7 +34,7 @@ class V1::Admin::ItemsController < V1::AdminController
   def search
     if params[:regex].present?
       result =
-        Item.where("name like '%#{params[:regex]}%'").order('name asc')
+        Item.where("title like '%#{params[:regex]}%'").order('title asc')
           .limit(100)
     end
     render json: result, status: :ok
@@ -54,7 +53,7 @@ class V1::Admin::ItemsController < V1::AdminController
       if params[:item][:term].present?
         @items =
           @items.where(
-            'items.name LIKE ?',
+            'items.title LIKE ?',
             "%#{params[:item][:term]}%"
           )
       end
@@ -90,12 +89,13 @@ class V1::Admin::ItemsController < V1::AdminController
       else
         []
       end
+      binding.pry
     @fields =
-      ((all_fields) & Item.attribute_names) | %i[id name ]
+      ((all_fields) & Item.attribute_names) | %i[id title ]
     @additional_fields =
       (
         all_fields &
-          Item.reflect_on_all_associations.map { |object| object.name.to_s }
+          Item.reflect_on_all_associations.map { |object| object.title.to_s }
       )
   end
 end

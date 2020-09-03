@@ -12,7 +12,8 @@ class V1::ProductsController < ApiController
     end
   end
 
-  def show; end
+  def show
+  end
 
   private
 
