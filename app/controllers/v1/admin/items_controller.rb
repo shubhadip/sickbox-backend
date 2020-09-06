@@ -39,12 +39,12 @@ class V1::Admin::ItemsController < V1::AdminController
     end
     render json: result, status: :ok
   end
-
+  
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_item
-      @item = Product.find(params[:id])
+      @item = Item.find(params[:id])
   end
 
   def item_filter
@@ -89,13 +89,12 @@ class V1::Admin::ItemsController < V1::AdminController
       else
         []
       end
-      binding.pry
     @fields =
       ((all_fields) & Item.attribute_names) | %i[id title ]
     @additional_fields =
       (
         all_fields &
-          Item.reflect_on_all_associations.map { |object| object.title.to_s }
+          Item.reflect_on_all_associations
       )
   end
 end

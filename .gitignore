@@ -28,3 +28,4 @@
 
 #
 db-code-snippet.rb
+/config/credentials/development.key
